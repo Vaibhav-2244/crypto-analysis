@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Rising Phoenix</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXAB6Rk4RMJClkvHLT/ZM5RLXQ9u8pr6XW/7scFJjKm5LMIRyFAlPpvFmw09CLF0PvyYkYlw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- AOS Library for Animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            font-weight: 600;
+            color: #0b0b0b;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1509389951036-aad825cfa5d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 35px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 105, 143, 0.6); /* Overlay Color */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out forwards;
+    
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero p {
+            font-size: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story, .mission, .values, .expertise, .next {
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* AOS Animations */
+        .story[data-aos],
+        .mission[data-aos],
+        .values[data-aos],
+        .expertise[data-aos],
+        .next[data-aos] {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Values and Expertise Columns */
+        .values ul, .expertise ul {
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .values li, .expertise li {
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .values li::before, .expertise li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #00ffcc;
+            font-size: 1.5rem;
+        }
+
+        /* Next Section */
+        .next p {
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: #1c1e21;
+            color: white;
+            padding: 40px 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+            padding-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #00ffcc;
+        }
+
+        .footer-column ul li a i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            vertical-align: middle;
+        }
+
+        .footer-column ul li a:hover i {
+            color: #00ffcc;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .footer-copyright p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .footer-columns {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Hover Effects */
+        a {
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            transform: translateX(5px);
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Welcome to Rising Phoenix</h1>
+                <p>Where Innovation Meets Dedication</p>
+            </div>
+        </section>
+        
+        <section class="story" data-aos="fade-up">
+            <h2>Our Story</h2>
+            <p>Rising Phoenix was born from a shared passion for pushing the boundaries of technology and creativity. As a team of innovators and problem-solvers, we embarked on this journey to craft digital solutions that not only look stunning but also deliver exceptional user experiences. With a solid background in frontend, backend, and UI/UX design, we are committed to turning ideas into reality.</p>
+        </section>
+        
+        <section class="mission" data-aos="fade-up">
+            <h2>Our Mission</h2>
+            <p>Our mission is to ignite the spark of creativity and innovation in the world of web development. We aim to build a vibrant community of developers, designers, and thinkers who believe in the transformative power of the web. Through our work, we strive to make a positive impact, one project at a time.</p>
+        </section>
+        
+        <section class="values" data-aos="fade-up">
+            <h2>Our Values</h2>
+            <ul>
+                <li><strong>Innovation</strong>: We challenge the status quo and explore new possibilities in web development.</li>
+                <li><strong>Creativity</strong>: We bring fresh ideas to life through cutting-edge design and technology.</li>
+                <li><strong>Collaboration</strong>: We believe in the power of teamwork and collective intelligence to achieve extraordinary results.</li>
+                <li><strong>Integrity</strong>: We uphold the highest standards of honesty and transparency in all our endeavors.</li>
+                <li><strong>Excellence</strong>: We strive for excellence in every project, ensuring top-notch quality and performance.</li>
+                <li><strong>Community</strong>: We foster a supportive and inclusive environment where everyone can thrive.</li>
+            </ul>
+        </section>
+        
+        <section class="expertise" data-aos="fade-up">
+            <h2>Our Expertise</h2>
+            <ul>
+                <li><strong>Frontend Development</strong>: Mastery of HTML, CSS, JavaScript, and React to create engaging and responsive user interfaces.</li>
+                <li><strong>Backend Development</strong>: Proficiency in PHP, Python, and Node.js to develop robust, scalable backend systems.</li>
+                <li><strong>UI/UX Design</strong>: Passion for crafting intuitive, engaging, and visually appealing user experiences.</li>
+                <li><strong>Full-Stack Solutions</strong>: Comprehensive services covering both frontend and backend to deliver seamless applications.</li>
+                <li><strong>Mobile Development</strong>: Creating responsive and user-friendly mobile applications for various platforms.</li>
+                <li><strong>Cloud Integration</strong>: Leveraging cloud technologies to enhance scalability, security, and performance.</li>
+            </ul>
+        </section>
+        
+        <section class="next" data-aos="fade-up">
+            <h2>What's Next?</h2>
+            <p>As Rising Phoenix continues to grow and evolve, we invite you to be part of our journey. Whether you're an experienced developer or a curious beginner, we hope to inspire you to reach new heights in the world of web development. Together, let's create something extraordinary.</p>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> Company Info</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Our Team</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-life-ring"></i> Help Center</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-file-alt"></i> Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Rising Phoenix. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- AOS Library JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

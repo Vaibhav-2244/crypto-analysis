@@ -1,0 +1,335 @@
+<!-- contact-us.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Global Styles */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            font-weight: bold;
+            color: #00698f;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+
+        .contact {
+            padding: 40px;
+            background-color: #f2f2f2;
+        }
+
+        .contact h2 {
+            margin-top: 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #00698f;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input[type="text"]:hover, .contact-form textarea:hover {
+            border-color: #0099cc;
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: #00698f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: #0099cc;
+        }
+
+        /* Address Section */
+
+        .address {
+            padding: 40px;
+        }
+
+        .address h2 {
+            margin-top: 0;
+        }
+
+        .address ul {
+            columns: 2;
+        }
+
+        /* Social Media Section */
+
+        .social-media {
+            padding: 40px;
+            background-color: #f2f2f2;
+        }
+
+        .social-media h2 {
+            margin-top: 0;
+        }
+
+        .social-media ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-media li {
+            margin-bottom: 10px;
+        }
+
+        .social-media a {
+            color: #00698f;
+            text-decoration: none;
+        }
+
+        .social-media a:hover {
+            color: #0099cc;
+        }
+
+        /* Footer Styling */
+        .footer {
+    background: #1c1e21;
+    color: white;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #00ffcc;
+    border-bottom: 2px solid #00ffcc;
+    padding-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #00ffcc;
+}
+
+.footer-column ul li a i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+.footer-column ul li a:hover i {
+    color: #00ffcc;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.footer-copyright p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        margin-bottom: 20px;
+    }
+}
+
+
+           /* Alert Styles */
+           .alert {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .alert.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="contact">
+            <h2>Get in Touch</h2>
+            <p>We'd love to hear from you! Whether you have a question, a comment, or just want to say hello, please don't hesitate to reach out.</p>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+                    <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+                    <textarea id="message" name="message" placeholder="Message" required></textarea><br><br>
+                    <input type="submit" value="Send Message">
+                </form>
+            </div>
+        </section>
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-columns">
+            <div class="footer-column">
+              <h4>About Us</h4>
+              <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Our Team</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Follow Us</h4>
+              <ul>
+                <li><a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                <li><a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+                <li><a href="#" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <p>&copy; 2024 Web Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+        
+
+        <!-- Alert Message -->
+        <div id="alertMessage" class="alert" style="display: none;">Your message has been sent successfully!</div>
+
+        <script>
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                fetch('/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                })
+                .then(response => response.text())
+                .then((message) => {
+                    document.getElementById('alertMessage').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('alertMessage').style.display = 'none';
+                    }, 3000); // hide the alert after 3 seconds
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            });
+        </script>
+    </main>
+</body>

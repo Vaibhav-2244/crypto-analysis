@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rising Phoenix - Crypto Forecast</title>
+    <!-- Include Font Awesome and Chart.js for graphs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar Styling */
+        nav {
+            width: 100%;
+            background: #1c1e21;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Color-Changing Animation */
+        @keyframes colorChange {
+            0% {
+                color: #ff0066;
+            }
+            25% {
+                color: #ffcc00;
+            }
+            50% {
+                color: #33cc33;
+            }
+            75% {
+                color: #0099ff;
+            }
+            100% {
+                color: #ff0066;
+            }
+        }
+
+        .navbar-heading {
+            font-size: 36px;
+            font-weight: bold;
+            animation: colorChange 5s infinite; /* 5-second transition for smooth effect */
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Menu Icon */
+        .menu-icon-container {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .menu-icon-container i {
+            font-size: 30px;
+            color: #fff;
+        }
+
+        /* Dropdown Menu */
+        .menu {
+            display: none;
+            position: absolute;
+            top: 120px;
+            left: 20px;
+            width: 300px;
+            background: #2c2c3e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .menu :hover {
+            box-shadow: 0px 0px 10px white;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            font-size: 1.2rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .menu a:last-child {
+            border-bottom: none;
+        }
+
+        .menu a:hover {
+            background: #444;
+            color: #00ffcc;
+        }
+
+        /* Logout Button Styling */
+        .menu button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: linear-gradient(135deg, #e00509, #ff7675);
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.4s, transform 0.3s;
+        }
+
+        .menu button:hover {
+            background: linear-gradient(135deg, #ff7675, #e00509);
+            transform: scale(1.05);
+        }
+
+        /* Profile Icon Styling */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .profile-icon {
+            font-size: 25px;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(120deg, #1e1e2f, #2c2c3e, #1e1e2f);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #fff;
+            animation: typewriter 3s steps(20) 1s 1 normal both, blink 500ms steps(40) infinite normal;
+            width: 15ch;
+            background: linear-gradient(90deg, #ff0066, #00ffcc);
+        }
+
+
+        .hero img {
+            position: absolute; /* Change this */
+            bottom: -20px; /* Adjust as needed */
+            right: -20px; /* Adjust as needed */
+            width: 300px;
+            transform: rotate(25deg);
+            animation: floating 4s ease-in-out infinite;
+            
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px) rotate(25deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(25deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(25deg);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 15ch;
+            }
+        }
+
+        @keyframes blink {
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: white;
+            }
+        }
+
+        .hero p {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    max-width: 600px;
+    transition: transform 0.3s, color 0.3s; /* Add transition for smooth effect */
+}
+
+.hero p:hover {
+    transform: translateY(-10px); /* Moves the paragraph up slightly on hover */
+    color: #00ffcc; /* Change the text color on hover */
+}
+
+
+                /* Features Section */
+                .features {
+            background: #f7f7f7;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .features-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-box i {
+            font-size: 2.5rem;
+            color: #ff0066;
+            margin-bottom: 15px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature-box p {
+            color: #777;
+            font-size: 1rem;
+        }
+
+        /* Market Trends Section */
+        .market-trends {
+            background: #fff;
+            padding: 50px 20px;
+        }
+
+        .market-trends h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #1c1e21;
+            color: white;
+            padding: 40px 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+            padding-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #00ffcc;
+        }
+
+        .footer-column ul li a i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            vertical-align: middle;
+        }
+
+        .footer-column ul li a:hover i {
+            color: #00ffcc;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .footer-copyright p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .footer-columns {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <img src="logo.jpg" alt="Rising Phoenix Logo">
+        </div>
+
+        <div class="navbar-heading">
+            Rising Phoenix
+        </div>
+
+        <!-- Profile Icon -->
+        <div class="profile-container"> <a href="profile.html"><i class="fas fa-user-circle profile-icon"></i> </div></a>
+        <div class="menu-icon-container" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    
+        <!-- Dropdown Menu -->
+        <div class="menu" id="menuDropdown">
+            <a href="home.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <button onclick="location.href='/logout'">Logout</button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Crypto Analysis</h1>
+        <p>Welcome to Rising Phoenix, your go-to platform for cutting-edge crypto forecasting and market analysis.</p>
+        <img src="https://crypto-dashboard-jan.netlify.app/static/media/iphone.080029ada53f0cd57453.png" alt="Phone Image">
+    </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Features</h2>
+            <div class="features-container">
+                <div class="feature-box">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Real-Time Data</h3>
+                    <p>Get the latest updates on market trends and predictions with real-time data.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Platform</h3>
+                    <p>We ensure the security and privacy of your data with top-notch encryption.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access your crypto forecasts on the go with our mobile-friendly platform.</p>
+                </div>
+            </div>
+        </section>
+
+            <!-- Market Trends Section -->
+    <section class="market-trends">
+        <h2>Market Trends</h2>
+        <div class="chart-container">
+            <canvas id="marketChart"></canvas>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Rising Phoenix. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Toggle Dropdown Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const menuDropdown = document.getElementById('menuDropdown');
+        menuToggle.addEventListener('click', () => {
+            menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+
+         // Chart.js for Market Trends
+         const ctx = document.getElementById('marketChart').getContext('2d');
+        const marketChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Bitcoin',
+                    data: [45000, 47000, 49000, 47000, 50000, 52000],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true
+                },
+                {
+                    label: 'Ethereum',
+                    data: [3000, 3200, 3100, 3300, 3400, 3500],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#333'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#333'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#333'
+                        }
+                    }
+                }
+            }
+        });
+    
+        
+    </script>

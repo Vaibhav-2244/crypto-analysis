@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rising Phoenix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d0d0d 25%, #1f1f1f 25%, #1f1f1f 50%, #0d0d0d 50%, #0d0d0d 75%, #1f1f1f 75%, #1f1f1f 100%);
+            background-size: 56.57px 56.57px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            position: relative;
+            color: #fff;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        
+
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(18, 18, 46, 0.95), rgba(45, 52, 78, 0.85));
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            z-index: 2;
+            margin: 20px auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 120px;
+            filter: drop-shadow(0 0 10px #f5a623);
+            border-radius: 25px;
+        }
+
+        .login-box h2 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .subheading {
+            color: #f5a623;
+            margin-bottom: 20px;
+            font-size: 14px;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #f5a623; }
+            to { text-shadow: 0 0 20px #ff6f61, 0 0 30px #ffbe76; }
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #fff;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: 0.5s;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -10px;
+            font-size: 12px;
+            color: #f5a623;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .options input[type="checkbox"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .options a {
+            color: #f5a623;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .options a:hover {
+            color: #ffbe76;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #f5a623;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #ffbe76;
+            transform: translateY(-2px);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            color: #ffbe76;
+        }
+
+        .overview {
+            text-align: center;
+            z-index: 3;
+            max-width: 700px;
+            margin-top: 20px;
+        }
+
+        .overview h3 {
+            font-size: 20px;
+            color: #f5a623;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .overview p {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .side-image {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            width: 200px;
+            z-index: 2;
+            border-radius: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+            .overview h3 {
+                font-size: 16px;
+            }
+
+            .overview p {
+                font-size: 12px;
+            }
+
+            .side-image {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo">
+            <img src="logo.jpg" alt="Rising Phoenix Logo">
+        </div>
+        <div class="login-box">
+            <h2>Login !!</h2>
+            <p class="subheading">Please enter your credentials</p>
+            <form action="/" method="post">
+                <div class="input-group">
+                    <input type="text" id="username" name="username" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="options">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="forgot.html">Forgot Password?</a>
+                </div>
+                <button type="submit">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="signup.html">Register here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="overview">
+        <h3>About Rising Phoenix</h3>
+        <p>Rising Phoenix is a platform dedicated to providing top-notch crypto analysis. Our mission is to empower traders and investors with insights that drive success. Join us and rise above the noise of the market.</p>
+    </div>
+
+    <img src="https://i.pinimg.com/originals/0f/f7/78/0ff7784184af761d38db3013a4d1584e.gif" alt="Crypto Animation" class="side-image">
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* height: 100vh; */
+            background: linear-gradient(to right, #1e1e28, #3e3e4e);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-attachment: fixed;
+        }
+
+        /* Left Section */
+        .left-section {
+            color: #ffffff;
+            max-width: 50%;
+        }
+
+        .left-section h1 {
+            font-size: 2.5rem;
+            color: #00ffea;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ffea, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 15px #00ffea;
+            }
+            50% {
+                text-shadow: 0 0 20px #00ffea, 0 0 30px #00ffea, 0 0 40px #00ffea;
+            }
+        }
+
+        .left-section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .left-section img {
+            height: 200px;
+            width: 400px;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            width: 40%;
+            margin-top: 20px;
+            height: 750px;
+            padding: 20px;
+            background: rgba(20, 20, 45, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            transform: translateY(-10px);
+            transition: all 0.4s ease-in-out;
+        }
+        
+        .profile-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #cc0d0d;
+            transition: border-color 0.3s ease;
+        }
+
+        .profile-pic img:hover {
+            border-color: #0072ff;
+        }
+
+        /* Input Group */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-bottom: 2px solid #1e1e28;
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-bottom-color: #0072ff;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .input-group input:focus~label,
+        .input-group input:valid~label,
+        .input-group textarea:focus~label,
+        .input-group textarea:valid~label {
+            top: -10px;
+            font-size: 0.85rem;
+            color: #00c6ff;
+        }
+
+        .input-group textarea {
+            resize: none;
+            height: 90px;
+            padding-top: 15px;
+        }
+
+        /* Radio Group */
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .radio-group label {
+            margin: 0 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        /* Upload Button */
+.upload-btn-wrapper {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.upload-btn-wrapper input[type="file"] {
+    display: none;
+}
+
+.upload-btn-wrapper button {
+    padding: 10px 25px;
+    background: linear-gradient(to right, #1e1e28, #3e3e4e);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border-radius: 5px;
+}
+
+.upload-btn-wrapper button:hover {
+    background: linear-gradient(to right, #3e3e4e, #1e1e28);
+    transform: scale(1.05);
+}
+
+        /* Save Button */
+        .save-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .save-button button {
+            padding: 12px 30px;
+            background: linear-gradient(to right, #1e1e28, #3e3e4e);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .save-button button:hover {
+            background: linear-gradient(to right, #3e3e4e, #1e1e28);
+            transform: scale(1.06);
+        }
+
+        /* GIF Style */
+        .crypto-gif {
+            position: absolute;
+            bottom: 20px;
+            left: 150px;
+            max-width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .left-section {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .profile-container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .crypto-gif {
+                bottom: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left-section">
+        <h1>Welcome to Your Crypto Profile</h1>
+        <p>Manage your personal information and settings related to your crypto journey. Stay updated with the latest trends and ensure your profile is always up to date.</p>
+        <p>Explore the world of cryptocurrency with insights tailored to your preferences. Secure your digital identity and make the most out of your crypto experience.</p>
+        <img src="https://cdn.dribbble.com/users/4006007/screenshots/9133672/media/a461f3a417aa7273ec2a26a3500bcb5f.gif" alt="Crypto GIF" class="crypto-gif">
+    </div>
+
+    <div class="profile-container">
+        <h2>Create Your Profile</h2>
+        <div class="profile-pic">
+            <img src="https://via.placeholder.com/120" alt="Profile Picture" id="profilePicPreview">
+        </div>
+        <form id="profileForm" action="/profile" method="post" enctype="multipart/form-data">
+            <div class="upload-btn-wrapper">
+                <button type="button" onclick="document.getElementById('profilePicInput').click()">Upload Profile Picture</button>
+                <input type="file" name="profilePic" accept="image/*" id="profilePicInput" onchange="previewImage(event)">
+            </div>
+            <div class="input-group">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-group">
+                <textarea id="bio" name="bio" required></textarea>
+                <label for="bio">Investment Goals</label>
+            </div>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+                
+            </div>
+            <div class="save-button">
+                <button type="submit">Done !</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('profilePicPreview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+  fetch('/get-profile-data')
+    .then(response => response.json())
+    .then(data => {
+      if (data) {
+        document.getElementById('name').value = data.name || '';
+        document.getElementById('username').value = data.username || '';
+        document.getElementById('email').value = data.email || '';
+        document.getElementById('bio').value = data.bio || '';
+        document.querySelector(`input[name="gender"][value="${data.gender}"]`).checked = true;
+
+        // Load profile picture if available
+        if (data.profile_pic) {
+          document.getElementById('profilePicPreview').src = `data:image/jpeg;base64,${data.profile_pic}`;
+        }
+      }
+    })
+    .catch(error => console.error('Error fetching profile data:', error));
+});
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/profile')
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        document.getElementById('name').value = data.name || '';
+                        document.getElementById('username').value = data.username || '';
+                        document.getElementById('email').value = data.email || '';
+                        document.getElementById('bio').value = data.bio || '';
+                        if (data.gender) {
+                            document.querySelector(`input[name="gender"][value="${data.gender}"]`).checked = true;
+                        }
+                        if (data.profile_pic) {
+                            const arrayBufferView = new Uint8Array(data.profile_pic.data);
+                            const blob = new Blob([arrayBufferView], { type: "image/png" });
+                            const urlCreator = window.URL || window.webkitURL;
+                            const imageUrl = urlCreator.createObjectURL(blob);
+                            document.getElementById('profilePicPreview').src = imageUrl;
+                        }
+                    }
+                });
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('/profile', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(result => {
+                    alert(result);
+                })
+                .catch(error => {
+                    console.error('Error saving profile:', error);
+                    alert('Error saving profile.');
+                });
+        });
+    </script>
+    
+</body>
+
+</html>
